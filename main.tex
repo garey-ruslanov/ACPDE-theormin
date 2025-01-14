@@ -3,7 +3,7 @@
 \usepackage[utf8x]{inputenc}
 \usepackage[english,russian]{babel}
 \usepackage[T2A]{fontenc}
-\usepackage[14pt]{extsizes}
+\usepackage[12pt]{extsizes}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
@@ -18,8 +18,8 @@
 
 \maketitle
 \centering
-\newtheorem{definition}{Опр.}[section]
-\newtheorem{theorem}{Теор.}[section]
+\newtheorem{definition}{Опр.}[subsection]
+\newtheorem{theorem}{Теор.}[subsection]
 
 \onehalfspacing
 
@@ -28,7 +28,7 @@
 \section{Оправдание}
 
 Я вызвался писать этот документ будучи относительно пьяным. В трезвом уме я бы ни за что не согласился тратить на это время, потому что мне ультралень. Однако here we are.
-Пока что формат документа планируется следующий: просто переписать все определения и формулировки из каждой записанной лекции А.Б.Костина.
+Пока что формат документа планируется следующий: просто переписать все определения и формулировки из каждой записанной лекции А.Б.Костина. \\
 \vspace{14}
 Поплакать об оформлении, попросить письменные конспекты, попросить в долг 500 рублей: t.me/diracseascrolls
 \vspace{14}
@@ -203,7 +203,117 @@ $|\tilde{\alpha}|=\alpha_0 + \alpha_1 + \dots + \alpha_n, \ \alpha_0 < n_j, \ |\
 $\diamond$ Лекция 5
 
 \subsection{Пример отсутстия аналитического решения задачи уравнения теплопроводности}
-У этой задачи не существует решения, аналитического в окрестности $(0,0)$.
+У этой задачи не существует решения, аналитического в окрестности $(0,0)$:
 
+\begin{equation}
+\begin{cases}
+$u_t = u_{xx}, \; x \in \mathbb{R},\ t>0$ \\
+$u(x,0) = \frac{1}{1+x^2}, \; x \in \mathbb{R}$ \\
+\end{cases}
+\end{equation}
+Это решение:
+\begin{equation}
+u(x,t)=
+\begin{cases}
+$\dfrac{1}{2\sqrt{\pi t}} \int_{-\infty}^{\infty} e^{-\dfrac{(x-\xi)^2}{4t}} \dfrac{1}{1+\xi^2} d\xi, \; t > 0 $ \\
+$\dfrac{1}{1+x^2}, \; t = 0.$ \\
+\end{cases}
+\end{equation}
+не является аналитическим, но является единственным в классе ограниченных функций.
+
+\subsection{Характеристики и характеристические направления.}
+% Особенности постановки задачи Коши с начальными данными на характеристиках.
+Уравнение $\sum_{|\alpha| \le m} a_{\alpha}(x)\mathbb{D}^{\alpha}u = f(x)$.
+Поверхность $S :F(x)=0$, $F \in C^1, |\nabla F| \ne 0 \ \forall x \in S$.
+Тогда существует нормаль $n=n(x)$.
+
+\begin{definition}[Характеристическая поверхность]
+Гладкая поверхность $S$, для которой выполняется равенство $\sum_{|\alpha|= m}a_{\alpha}(x)(\frac{\partial F}{\partial x_0})^{\alpha_0}(\frac{\partial F}{\partial x_1})^{\alpha_1}\dots(\frac{\partial F}{\partial x_n})^{\alpha_n} \equiv \sum_{|\alpha|=m} a_{\alpha}(x)(\nabla F)^{\alpha} = 0$ называется характеристической поверхностью для уравнения (1), или просто характеристикой. \\
+\end{definition}
+$\checkmark$ Коэффициент перед $\frac{\partial^m v(y)}{\partial y_0^m}$ на $S$ обращается в 0. \\
+% v, y - это после замены во время распрямления поверхности.
+\vspace{14}
+
+$\diamond$ Лекция 6 \\
+
+\begin{definition}
+Для уравнения (1) построим многочлен $n+1$ переменной $(\xi_0, \xi_1, \dots, \xi_n)$: $(3) = \sum_{|\alpha| \le m}a_{\alpha}(x)\xi^{\alpha}$. Многочлен (3) называют полным символом уравнения (1), а $(4) = \sum_{|\alpha| = m}a_{\alpha}(x)\xi^{\alpha}$ - главным символом (1).
+\end{definition}
+$\checkmark$ Иногда в этом определении заменяют $\xi \to i\xi$.
+\begin{definition}
+Вектор $\xi \in \mathbb{R}^{n+1} \setminus \{\theta\}$ задаёт характеристическое направление уравнения (1) в т. $x$, если главный символ уравнения обращается в 0 на $\xi$. ($\sum_{|\alpha|=m} a_{\alpha}(x)\xi^{\alpha} = 0$)
+\end{definition}
+% \nabla F || n
+
+% мне ультралень записывать определение характеристического направления для системы.
+
+\subsection{Классификация уравнений и систем УрЧП. Эллиптические, гиперболические и параболические системы.}
+
+\begin{definition}[Эллиптическое уравнение]
+Уравнение называется эллиптическим в т. $x$, если $\forall \xi  \in \mathbb{R}^{n+1} \setminus \{\theta\}$ выполнено $\sum_{|\alpha|=m} a_\alpha(x) \xi^\alpha \neq 0$.
+\end{definition}
+$\checkmark$ Альтернативная формулировка: уравнение не имеет характеристических направлений. \\
+
+\begin{definition}[Гиперболическое уравнение]
+Уравнение называется гиперболическим в т. $x$, если его хар. уравнение $\sum_{|\alpha|=m} a_\alpha(x) \xi^\alpha = 0$ имеет только действ. корни отн-но $\xi_0$ при $\xi^{\prime}=\left(\xi_1, \ldots, \xi_n\right) \in \mathbb{R}^{n} \setminus \{\theta\}$ 
+\end{definition}
+
+$\diamond$ Лекция 7
+
+\begin{definition}[Параболическое уравнение]
+Уравнение называется параболическим (по Петровскому) в т. $x$, если $\exists \, p \in \mathbb{N}$, т. ч. относительно $\xi_0$ все действительные части всех корней уравнения
+$$
+\sum_{\left|\alpha^{\prime}\right|+p \cdot \alpha_0=m} a_\alpha\left(x_0, x^{\prime}\right) \xi_0^{\alpha_0} \cdot\left(i \xi^{\prime}\right)^{\alpha^{\prime}}=0
+$$ отрицательны при всех $|\xi^{\prime}| = 1$, где $\xi^{\prime} \in \mathbb{R}^{n} \setminus \{\theta\}$
+\end{definition}
+
+\vspace{14}
+
+Система:
+$$
+\frac{\partial u_i}{ \partial x_0} = \sum_{j=1}^N \sum_{|\alpha| \le n_j } a_{i j}^\alpha(x) \frac{\partial^\alpha u_j}{\partial x_0^{\alpha_0} \ldots \partial x_n^{\alpha_n}}=f_i(x), i=1,2, \ldots, N \\
+$$
+\begin{definition}[Эллиптическая система]
+называется эллиптической, если $\forall \xi \in \mathbb{R}^{n+1} \setminus \{\theta\}$ выполнено: $\operatorname{det}\left(\sum_{|a|=n_j}a_{i j}^\alpha(x) \xi_0^{\alpha_0} \ldots \cdot \xi_n^{\alpha_n}\right)  \neq 0$. \\
+\end{definition}
+
+\begin{definition}[Гиперболическая система]
+называется гиперболической в т. $x$, если $\forall  \xi=\left(\xi_1, \ldots, \xi_n\right) \in \mathbb{R}^{n} \setminus \{\theta\}$ в определителе $\operatorname{det}\left(\sum_{|a|=n_j}a_{i j}^\alpha(x) \xi_0^{\alpha_0} \cdot \xi_1^{\alpha_1} \ldots \cdot \xi_n^{\alpha_n}\right)$ все корни относительно действительных переменных $\xi_0$ только действительные. \\
+\end{definition}
+
+\begin{definition}[Параболическая система]
+называется параболической в т. $x$, если $\forall |\xi^{\prime}| = 1$, где $  \xi^{\prime}=\left(\xi_1, \ldots, \xi_n\right) \in \mathbb{R}^{n} \setminus \{\theta\}$ в определителе $\operatorname{det}\left(\sum_{|a|=2 \cdot m} (-1)^{m} a_{i j}^\alpha(x) \xi_1^{\alpha_1} \ldots \cdot \xi_n^{\alpha_n} -\xi_0 \cdot \delta_{i j} \right)$ все  корни относительно переменных $\xi_0$ имеют отрицательную действительную часть.
+\end{definition}
+
+$\checkmark$ Определение в терминах оператора $\mathbb{L}(x,\mathbb{D})$ выходит за рамки настоящего теоретического минимума. 
+
+Линейное уравнение 2 порядка:
+$$
+\sum_{i, j=0}^n a_{i j}(x) \frac{\partial^2 u}{\partial x_i \partial x_j}+\sum_{i=0}^n f_i(x) \frac{\partial u}{\partial x_i}+c(x) \cdot u=f(x), x \in \mathbb{R}^{n+1} 
+$$ \\
+В точке $x_0$ вещественная симметрическая матрица: $A_0 = A(x_0) = (a_{ij}(x_0))$ имеет $n + 1$ собственное значение $\lambda_i$. $p$ - положит. собств. значений, $q$ - отрицательных и $r$ - нулевых.
+$\bullet$ Система называется эллиптической, если $(p = n + 1)$ или $(q = n + 1)$. \\
+$\bullet$ Система называется параболической, если $(p = n, q = 0, r=1)$ или $(p = 0, q = n, r=1)$. \\
+$\bullet$ Система называется гиперболической, если $(p = n, q = 1, r=0)$ или $(p = 1, q = n, r= 0)$. \\
+$\bullet$ Система называется ультрагиперболической, если $(p \geq 2, q \geq 2, p + q = n + 1)$. \\
+
+$\checkmark$ Линейными преобразованиями эти уравнения приводятся к каноническому виду. \\
+
+Канонический вид \textbf{эллиптич.} уравнения:
+$$
+\pm \sum_{k=0}^n \frac{\partial^2 \tilde{u}^2}{\partial y_k^2}+\sum_{k=0}^n \tilde{b}_k \cdot \frac{\partial \tilde{u}^2}{\partial y_k}+\tilde{c} \cdot \tilde{u}=\tilde{f}(y)
+$$
+Канонический вид \textbf{параболич.} уравнения:
+$$
+\pm \sum_{k=1}^n \frac{\partial^2 \tilde{u}^2}{\partial y_k{ }^2}+\sum_{k=0}^n \tilde{b}_k \cdot \frac{\partial \tilde{u}^2}{\partial y_k}+\tilde{c} \cdot \tilde{u}=\tilde{f}(y)
+$$
+
+Канонический вид \textbf{гиперболич.} и \textbf{ультрагиперболич.} уравнения:
+$$
+
+& \pm\left(\sum_{k=1}^n \frac{\partial^2 \tilde{u}^2}{\partial y_k^2}-\frac{\partial^2 \tilde{u}}{\partial y_0^2}\right)+\sum_{k=0}^n \tilde{b}_k \cdot \frac{\partial \tilde{u}}{\partial y_k}+\tilde{c} \cdot \tilde{u}=\tilde{f}(y) \\
+& 1 \leqslant m \leqslant n-2 \quad \sum_{k=0}^m \frac{\partial^2 \tilde{u}}{\partial y_k^2}-\sum_{k=m+1}^n \frac{\partial^2 \tilde{u}}{\partial y_k^2}=\tilde{f}(y)
+
+$$
 
 \end{document}
